@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h1 class="m-3 text-center">Create Project</h1>
+
+<div class="d-flex align-items-center justify-content-center">
+  <div class="card" style="width: 75%;">
+    <div class="card-body">
+      <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <div class="d-grid">
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>  
+  </div>
+</div>
+
+<script>
+  inputs = document.querySelectorAll('input')
+  labels = document.querySelectorAll('label')
+
+  inputs.forEach(input => {
+    input.classList.add('form-control')
+  })
+
+  labels.forEach(label => {
+    label.classList.add('form-label')
+  })
+</script>
+{% endblock %}
