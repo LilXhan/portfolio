@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 
-from django.views.generic import ListView, View
+from django.views.generic import ListView, View, UpdateView
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 
 from .forms import CreateProject
 from .models import Project
@@ -47,5 +48,17 @@ class CreateProjectView(LoginRequiredMixin, View):
             form.save_m2m()
             return redirect('projects')
 
+class UpdateProjectView(LoginRequiredMixin, UpdateView):
+
+    model = Project
+    template_name = 'update.html'
+    fields = [
+        'title',
+        'image',
+        'url_github',
+        'url_demo',
+        'tags'
+    ]
+    success_url = reverse_lazy('projects')
 
 

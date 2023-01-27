@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+  <div class="container">
+    <h1 class="m-3 text-center">Update Project</h1>
+    <div class="d-flex align-items-center justify-content-center">
+      <div class="card" style="width: 75%;">
+        <div class="card-body">
+          <form method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+          </form>
+        </div>
+      </div> 
+    </div>
+  </div> 
+
+  <script>
+    inputs = document.querySelectorAll('input')
+    labels = document.querySelectorAll('label')
+  
+    inputs.forEach(input => {
+      input.classList.add('form-control')
+    })
+  
+    labels.forEach(label => {
+      label.classList.add('form-label')
+    })
+  </script>
+
+{% endblock %}

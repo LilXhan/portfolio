@@ -1,46 +1,49 @@
 {% extends 'layout.html' %}
 
 {% block content %}
+<div class="container">
 
-<h2 class="text-center m-3">Projects</h2>
-<hr>
-<a href="{% url 'create'%}" class="btn btn-primary">Agregar</a>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">*</th>
-      <th scope="col">Title</th>
-      <th scope="col">IMG</th>
-      <th scope="col">Demo</th>
-      <th scope="col">Github</th>
-      <th scope="col">Tags</th>
-      <th scope="col">Functions</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for project in object_list %}
+  <h2 class="text-center m-3">Projects</h2>
+  <hr>
+  <a href="{% url 'create'%}" class="btn btn-primary">Agregar</a>
+  <table class="table">
+    <thead>
       <tr>
-        <th scope="row">*</th>
-        <td>{{ project.title }}</td>
-        <td>
-          <a href="{{ project.image }}">Image</a>
-        </td>
-        <td>
-          <a href="{{ project.url_demo }}">Demo</a>
-        </td>
-        <td>
-          <a href="{{ project.url_github }}">Github</a>
-        </td>
-        <td>
-          {% for tag in project.tags.all %}
-            <span class="badge text-bg-primary">{{tag}}</span>
-          {% endfor %}
-        </td>
-        <td>
-          <a href="{% url 'delete' project.id %}" class="btn btn-danger">Delete</a>
-        </td>
+        <th scope="col">*</th>
+        <th scope="col">Title</th>
+        <th scope="col">IMG</th>
+        <th scope="col">Demo</th>
+        <th scope="col">Github</th>
+        <th scope="col">Tags</th>
+        <th scope="col">Functions</th>
       </tr>
-    {% endfor %}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      {% for project in object_list %}
+        <tr>
+          <th scope="row">*</th>
+          <td>{{ project.title }}</td>
+          <td>
+            <a href="{{ project.image }}">Image</a>
+          </td>
+          <td>
+            <a href="{{ project.url_demo }}">Demo</a>
+          </td>
+          <td>
+            <a href="{{ project.url_github }}">Github</a>
+          </td>
+          <td>
+            {% for tag in project.tags.all %}
+              <span class="badge text-bg-primary">{{tag}}</span>
+            {% endfor %}
+          </td>
+          <td>
+            <a href="{% url 'delete' project.id %}" class="btn btn-danger">Delete</a>
+            <a href="{% url 'update' project.id %}" class="btn btn-success">Update</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock %}

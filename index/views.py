@@ -2,11 +2,19 @@ from django.shortcuts import render
 
 from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from projects.models import Project
 
-class Index(LoginRequiredMixin, View):
+class Index(View):
 
     def get(self, request):
-        return render(request, 'index.html')
+
+        projects = Project.objects.all()
+
+        context = {
+            'projects': projects
+        }
+
+        return render(request, 'index.html', context)
 
 
 
