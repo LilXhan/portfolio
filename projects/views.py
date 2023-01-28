@@ -39,7 +39,7 @@ class CreateProjectView(LoginRequiredMixin, View):
     
     def post(self, request):
         form = CreateProject(request.POST)
-
+        
         if form.is_valid():
             obj = form.save(commit=False)
             obj.user = request.user 

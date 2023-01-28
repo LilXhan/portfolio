@@ -6,10 +6,5 @@ class CreateProject(forms.ModelForm):
 
     class Meta:
         model = Project
-        fields = [
-            'title',
-            'image',
-            'url_github',
-            'url_demo',
-            'tags'
-            ]
+        fields = '__all__'
+            
